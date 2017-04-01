@@ -139,26 +139,25 @@ requests.utils.add_dict_to_cookiejar(s.cookies, my_cookies)
 s.headers.update({'User-Agent':'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.116 Safari/537.36','Content-Type':'application/x-www-form-urlencoded'})
 
 def send_line(play_line):
-	data='groupID=%s&comments=%s' % (group_id, play_line)
-	r=s.post(base_url,data=data)
-	j=json.loads(r.content)
-	global line_index
-	if j['s']:
-		line_index += 1
-		print("Success! Sent message at index")
-		if(line_index = caesar.count())
-                    exit()
-	else:
-		print("Failed with error: %s" % j['e'])
-	
+    data='groupID=%s&comments=%s' % (group_id, play_line)
+    r=s.post(base_url,data=data)
+    j=json.loads(r.content)
+    global line_index
+        line_index += 1
+        print("Success! Sent message at index")
+        if(line_index == len(caesar)):
+            print("Sent all spam, shutting down...")
+            quit()
+    else:
+        print("Failed with error: %s" % j['e'][0])
+    
 
-	
 def main():
-	while(1):
-		sending_line = caesar[line_index]
-		print("Sending line: ", sending_line)
-		send_line(sending_line)
-		time.sleep(timeout)
-	
+    while(1):
+        sending_line = caesar[line_index]
+        print("Sending line: ", sending_line)
+        send_line(sending_line)
+        time.sleep(timeout)
+    
 if __name__ == '__main__':
-	main()
+    main()
