@@ -143,8 +143,9 @@ def send_line(play_line):
     r=s.post(base_url,data=data)
     j=json.loads(r.content)
     global line_index
+    if j['s']:
         line_index += 1
-        print("Success! Sent message at index")
+        print("Success! Sent message at index ", line_index)
         if(line_index == len(caesar)):
             print("Sent all spam, shutting down...")
             quit()
